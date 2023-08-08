@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
                       width: 10,
                     ),
                     Text(
-                      "All Bookmarks",
+                      "Al Bookmarks",
                       style: TextStyle(color: Colors.black),
                     )
                   ],
