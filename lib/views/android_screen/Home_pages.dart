@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -31,7 +32,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
+        title: const Text(
           "My Browser",
           style: TextStyle(
             color: Colors.black,
@@ -54,7 +55,7 @@ class _HomeState extends State<Home> {
                               .map((e) => Center(
                                     child: Container(
                                       height: 100,
-                                      padding: EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
                                       width: double.infinity,
                                       child: Row(
                                         mainAxisAlignment:
@@ -67,7 +68,7 @@ class _HomeState extends State<Home> {
                                                 bookmark.remove(e);
                                               });
                                             },
-                                            icon: Icon(Icons.delete),
+                                            icon: const Icon(Icons.delete),
                                           ),
                                         ],
                                       ),
@@ -81,13 +82,13 @@ class _HomeState extends State<Home> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title: Text("Search Engine"),
+                    title: const Text("Search Engine"),
                     content: Container(
                       height: 250,
                       child: Column(
                         children: [
                           RadioListTile(
-                            title: Text("Google"),
+                            title: const Text("Google"),
                             value: "https://www.google.com/",
                             groupValue: link,
                             onChanged: (val) {
@@ -103,7 +104,7 @@ class _HomeState extends State<Home> {
                             },
                           ),
                           RadioListTile(
-                              title: Text("Yahoo"),
+                              title: const Text("Yahoo"),
                               value: "https://www.yahoo.com/",
                               groupValue: link,
                               onChanged: (val) {
@@ -118,7 +119,7 @@ class _HomeState extends State<Home> {
                                 Navigator.of(context).pop();
                               }),
                           RadioListTile(
-                              title: Text("Bing"),
+                              title: const Text("Bing"),
                               value: "https://www.bing.com/",
                               groupValue: link,
                               onChanged: (val) {
@@ -133,7 +134,7 @@ class _HomeState extends State<Home> {
                                 Navigator.of(context).pop();
                               }),
                           RadioListTile(
-                              title: Text("Duck Duck Go"),
+                              title: const Text("Duck Duck Go"),
                               value: "https://www.duckduckgo.com/",
                               groupValue: link,
                               onChanged: (val) {
@@ -155,7 +156,7 @@ class _HomeState extends State<Home> {
               }
             },
             itemBuilder: (context) => [
-              PopupMenuItem(
+              const PopupMenuItem(
                 value: "Book",
                 child: Row(
                   children: [
@@ -170,7 +171,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              PopupMenuItem(
+              const PopupMenuItem(
                 value: 2,
                 child: Row(
                   children: [
@@ -196,22 +197,36 @@ class _HomeState extends State<Home> {
         children: [
           Expanded(
             flex: 5,
-            child: InAppWebView(
-              onWebViewCreated: (controller) {
-                setState(() {
-                  inAppWebViewController = controller;
-                });
-              },
-              initialUrlRequest: URLRequest(
-                url: Uri.parse("https://www.google.com/"),
-              ),
-              pullToRefreshController: pullToRefreshController,
-              onLoadStart: (controller, url) {
-                setState(() {
-                  inAppWebViewController = controller;
-                });
-              },
-            ),
+            child: StreamBuilder(
+                stream: Connectivity().onConnectivityChanged,
+                builder: (BuildContext context,
+                    AsyncSnapshot<ConnectivityResult> snapshot) {
+                  return (snapshot.data == ConnectivityResult.mobile ||
+                          snapshot.data == ConnectivityResult.wifi)
+                      ? InAppWebView(
+                          onWebViewCreated: (controller) {
+                            setState(() {
+                              inAppWebViewController = controller;
+                            });
+                          },
+                          initialUrlRequest: URLRequest(
+                            url: Uri.parse("https://www.google.com/"),
+                          ),
+                          pullToRefreshController: pullToRefreshController,
+                          onLoadStart: (controller, url) {
+                            setState(() {
+                              inAppWebViewController = controller;
+                            });
+                          },
+                        )
+                      : Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/notfound.jpeg"),
+                            ),
+                          ),
+                        );
+                }),
           ),
           Expanded(
               child: Container(
@@ -231,7 +246,7 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       },
-                      icon: Icon(Icons.send),
+                      icon: const Icon(Icons.send),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50),
@@ -249,7 +264,7 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.home,
                         size: 40,
                       ),
@@ -260,7 +275,7 @@ class _HomeState extends State<Home> {
                           inAppWebViewController!.goForward();
                         }
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward,
                         size: 40,
                       ),
@@ -269,7 +284,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         bookmark.add("${link}search?q=${userInput.text}");
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.bookmark_add,
                         size: 40,
                       ),
@@ -280,7 +295,7 @@ class _HomeState extends State<Home> {
                           inAppWebViewController!.goBack();
                         }
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back_rounded,
                         size: 40,
                       ),
@@ -289,7 +304,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         inAppWebViewController!.reload();
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.refresh,
                         size: 40,
                       ),
