@@ -7,3 +7,7 @@
 ![Screenshot_20230809_111854](https://github.com/kevinmali/MIRROR_WALL/assets/132121875/47846d70-3012-479d-a9b5-65e3ff1f78a1)
 ![Screenshot_20230809_111815](https://github.com/kevinmali/MIRROR_WALL/assets/132121875/f1c4bfa1-4f08-4783-abd6-3f17cf780ccc)
 ![Screenshot_20230809_111724](https://github.com/kevinmali/MIRROR_WALL/assets/132121875/0d59f0e9-0396-4c35-a56c-bc8da5f118b4)
+<img src="![HomeScreen](https://github.com/kevinmali/MIRROR_WALL/assets/132121875/cc399591-6a94-45d4-a58e-6a8d3c0cc41c)
+" width="200px">
+<img src="![Google](https://github.com/kevinmali/MIRROR_WALL/assets/132121875/c669b635-01c4-4e92-b820-25e85a29a8b4)
+" width="200px">
