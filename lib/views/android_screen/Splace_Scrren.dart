@@ -11,33 +11,44 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, 'Home_page');
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, 'intro');
     });
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 200,
-              width: 200,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/Google.gif"),
-                  fit: BoxFit.fill,
-                ),
+      body: Stack(
+        children: [
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/backsplas/Lines-moving-right.gif"),
+                fit: BoxFit.fill,
               ),
             ),
-            SizedBox(
-              height: 20,
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/backsplas/Dribbble-Icon.gif"),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Text(
+                  "All Browser",
+                  style: TextStyle(color: Colors.red, fontSize: 30),
+                ),
+              ],
             ),
-            Text(
-              "Open Google",
-              style: TextStyle(color: Colors.red, fontSize: 30),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

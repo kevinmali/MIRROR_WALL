@@ -28,6 +28,7 @@ class _HomeState extends State<Home> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -233,23 +234,26 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  controller: userInput,
-                  decoration: InputDecoration(
-                    hintText: "Search on Google.......",
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        inAppWebViewController?.loadUrl(
-                          urlRequest: URLRequest(
-                            url: Uri.parse(
-                                "https://www.google.com/search?q=${userInput.text}"),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.send),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
+                Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: TextFormField(
+                    controller: userInput,
+                    decoration: InputDecoration(
+                      hintText: "Search on Google.......",
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          inAppWebViewController?.loadUrl(
+                            urlRequest: URLRequest(
+                              url: Uri.parse(
+                                  "https://www.google.com/search?q=${userInput.text}"),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.send),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(26),
+                      ),
                     ),
                   ),
                 ),
